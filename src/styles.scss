@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  font-size: 1rem;
+
+  &:focus-visible {
+    outline: none;
+    border: 1px solid #111f3b;
+  }
+}
+
+button {
+  padding: 0.75rem;
+  background-color: #193267;
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media only screen and (min-width: 740px) {
+    grid-template-columns: repeat(2, 21.5rem);
+  }
+
+  @media only screen and (min-width: 1100px) {
+    grid-template-columns: repeat(3, 21.5rem);
+  }
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+
+  > h3 {
+    margin: 0;
+  }
+
+  > img {
+    height: 6rem;
+    width: 6rem;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  &:hover {
+    background-color: #dbe3f6;
+    color: #111f3b;
+    border-color: #111f3b;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}

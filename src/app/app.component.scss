@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #193267;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1.5rem;
+}
+
+main {
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
