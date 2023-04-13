@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Musician } from '../musician.model';
 
 @Component({
   selector: 'app-musician-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf, NgFor],
   template: `
     <p *ngIf="isLoading">Loading...</p>
     <p *ngIf="!isLoading && musicians.length === 0">No Musicians Found.</p>
