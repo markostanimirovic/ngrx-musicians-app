@@ -4,41 +4,34 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { createSelector, Store } from '@ngrx/store';
-import { LetDirective } from '@ngrx/component';
+import { Store } from '@ngrx/store';
 import { MusicianListComponent } from './components/musician-list.component';
 import { SearchBoxComponent } from '../shared/search-box.component';
 import { musiciansPageActions } from './actions/musicians-page.actions';
 import { musiciansFeature } from './musicians.state';
 
-const selectMusiciansPageViewModel = createSelector({
-  filteredMusicians: musiciansFeature.selectFilteredMusicians,
-  isLoading: musiciansFeature.selectIsLoading,
-  query: musiciansFeature.selectQuery,
-});
-
 @Component({
   selector: 'app-musicians',
   standalone: true,
-  imports: [LetDirective, SearchBoxComponent, MusicianListComponent],
+  imports: [SearchBoxComponent, MusicianListComponent],
   template: `
-    <ng-container *ngrxLet="vm$ as vm">
-      <h1>Find Your Favorite Musicians</h1>
-      <app-search-box
-        [query]="vm.query"
-        (search)="onSearch($event)"
-      ></app-search-box>
-      <app-musician-list
-        [musicians]="vm.filteredMusicians"
-        [isLoading]="vm.isLoading"
-      ></app-musician-list>
-    </ng-container>
+    <h1>Find Your Favorite Musicians</h1>
+
+    <app-search-box [query]="query()" (search)="onSearch($event)" />
+    <app-musician-list [musicians]="musicians()" [isLoading]="isLoading()" />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MusiciansComponent implements OnInit {
   private readonly store = inject(Store);
-  readonly vm$ = this.store.select(selectMusiciansPageViewModel);
+
+  readonly musicians = this.store.selectSignal(
+    musiciansFeature.selectFilteredMusicians
+  );
+  readonly isLoading = this.store.selectSignal(
+    musiciansFeature.selectIsLoading
+  );
+  readonly query = this.store.selectSignal(musiciansFeature.selectQuery);
 
   ngOnInit() {
     this.store.dispatch(musiciansPageActions.opened());
