@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { createSelector, Store } from '@ngrx/store';
-import { LetModule } from '@ngrx/component';
+import { LetDirective } from '@ngrx/component';
 import { MusicianListComponent } from './components/musician-list.component';
 import { SearchBoxComponent } from '../shared/search-box.component';
 import { musiciansPageActions } from './actions/musicians-page.actions';
@@ -20,7 +20,7 @@ const selectMusiciansPageViewModel = createSelector({
 @Component({
   selector: 'app-musicians',
   standalone: true,
-  imports: [LetModule, SearchBoxComponent, MusicianListComponent],
+  imports: [LetDirective, SearchBoxComponent, MusicianListComponent],
   template: `
     <ng-container *ngrxLet="vm$ as vm">
       <h1>Find Your Favorite Musicians</h1>
